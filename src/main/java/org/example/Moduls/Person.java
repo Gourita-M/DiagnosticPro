@@ -1,9 +1,16 @@
 package org.example.Moduls;
 
 import org.example.enums.RoleType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 
+@Entity
+@Table(name = "Person")
 public class Person {
-    protected Integer id;
+
+    @Id
+    protected int id;
     protected String fullName;
     protected String email;
     protected String password;
