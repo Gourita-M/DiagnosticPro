@@ -16,7 +16,7 @@
             Login
         </h1>
 
-        <form action="/login" method="post" class="space-y-5">
+<form action="${pageContext.request.contextPath}/login" method="post" class="space-y-5">
 
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
