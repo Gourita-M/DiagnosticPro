@@ -15,11 +15,11 @@ public class DataBase {
             Connection connection = DriverManager.getConnection(url,userName,password);
 
             System.out.println("Connected");
-            
+
             return connection;
 
         }catch(SQLException e){
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("DataBase Not Connected");
             return null;
         }
