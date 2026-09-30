@@ -20,4 +20,19 @@ public class LoginController extends HttpServlet {
         request.getRequestDispatcher("/login.jsp")
                .forward(request, response);
     }
+
+    @Override
+    protected void doPost(
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws  ServletException, IOException{
+            
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+
+            System.out.println(email);
+            System.out.println(password);
+
+            response.sendRedirect("/");
+        }
 }
