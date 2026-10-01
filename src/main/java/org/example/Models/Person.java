@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "Person")
@@ -17,14 +19,15 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected int id;
-    protected String fullName;
-    protected String email;
-    protected String password;
+    private int id;
+    private String fullName;
+    private String email;
+    private String password;
     @Enumerated(EnumType.STRING)
-    protected RoleType role;
+    private RoleType role;
 
-    @OneToMany(mappedBy = )
+    @OneToMany(mappedBy = "Person")
+    private List<Patient> patients = new ArrayList<>();
 
     protected Person(){
         
@@ -76,4 +79,13 @@ public class Person {
     public void setRole(RoleType role) {
         this.role = role;
     }
+
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
+    }
+
 }
