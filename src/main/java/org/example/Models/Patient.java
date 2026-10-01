@@ -31,16 +31,8 @@ public class Patient {
     @JoinColumn(name = "nurse_id")
     private Person person;
 
-    public Patient(String fullName, String email, String phoneNumber, String socialNumber, String healthInsurance, int bloodPressure, int heartRate, int bodyTemperature, int respiratoryRate) {
-        this.fullName = fullName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.socialNumber = socialNumber;
-        this.healthInsurance = healthInsurance;
-        this.bloodPressure = bloodPressure;
-        this.heartRate = heartRate;
-        this.bodyTemperature = bodyTemperature;
-        this.respiratoryRate = respiratoryRate;
+    public Patient() {
+
     }
 
     public int getId() {
