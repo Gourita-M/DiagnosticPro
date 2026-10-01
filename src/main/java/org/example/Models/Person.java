@@ -1,5 +1,8 @@
 package org.example.Models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.example.enums.RoleType;
 
 import jakarta.persistence.Entity;
@@ -10,8 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.List;
-import java.util.ArrayList;
 
 @Entity
 @Table(name = "Person")
@@ -26,7 +27,7 @@ public class Person {
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
-    @OneToMany(mappedBy = "Person")
+    @OneToMany(mappedBy = "person")
     private List<Patient> patients = new ArrayList<>();
 
     protected Person(){
