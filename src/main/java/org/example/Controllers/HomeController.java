@@ -15,6 +15,7 @@ public class HomeController extends HttpServlet{
         HttpServletRequest request,
         HttpServletResponse response
     ) throws ServletException, IOException {
-        response.getWriter().println("Testing it");
+        request.getRequestDispatcher("/home.jsp")
+               .forward(request, response);
     }
 }
