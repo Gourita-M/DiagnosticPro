@@ -1,6 +1,19 @@
 package org.example.Models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Patient")
 public class Patient {
+
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String fullName;
     private String email;
@@ -14,8 +27,11 @@ public class Patient {
     private int weight;
     private int height;
 
-    public Patient(int id, String fullName, String email, String phoneNumber, String socialNumber, String healthInsurance, int bloodPressure, int heartRate, int bodyTemperature, int respiratoryRate) {
-        this.id = id;
+    @ManyToOne
+    @JoinColumn(name = "nurse_id")
+    private Person person;
+
+    public Patient(String fullName, String email, String phoneNumber, String socialNumber, String healthInsurance, int bloodPressure, int heartRate, int bodyTemperature, int respiratoryRate) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -121,5 +137,13 @@ public class Patient {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
