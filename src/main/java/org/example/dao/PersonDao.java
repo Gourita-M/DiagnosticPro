@@ -37,4 +37,20 @@ public class PersonDao {
 
         return person;
     }
+    public static Person getPersonById(int userId){
+
+        Person person;
+
+        try {
+
+            person = entityManager.find(Person.class, userId);
+
+        } catch (NoResultException e) {
+
+            person = null;
+            
+        }
+
+        return person;
+    }
 }
