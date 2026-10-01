@@ -1,27 +1,17 @@
 package org.example.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 public class DataBase {
     
-    public static Connection connection(){
-        String url = "jdbc:mysql://localhost:3306/medical_system";
-        String userName = "root";
-        String password = "";
+    public static EntityManager jpa() {
 
-        try{
-            Connection connection = DriverManager.getConnection(url,userName,password);
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("medicalPU");
 
-            System.out.println("Connected");
+        EntityManager entityManager = factory.createEntityManager();
 
-            return connection;
-
-        }catch(SQLException e){
-            //e.printStackTrace();
-            System.out.println("DataBase Not Connected");
-            return null;
-        }
+        return entityManager;
     }
 }
