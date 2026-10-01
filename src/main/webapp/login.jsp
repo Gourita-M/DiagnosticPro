@@ -59,5 +59,19 @@
 
     </div>
 
+    <%
+        String error = (String) session.getAttribute("error");
+
+        if (error != null) {
+    %>
+
+    <script>
+        alert("<%= error %>");
+    </script>
+
+    <%
+            session.removeAttribute("error");
+        }
+    %>
 </body>
 </html>
