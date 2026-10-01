@@ -14,9 +14,8 @@
     <span class="text-xs px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-medium">#MED-9402</span>
   </div>
 
-  <!-- Compact Form -->
-  <form id="clinicalIntakeForm" class="flex flex-col gap-4" onsubmit="event.preventDefault(); submitClinicalForm();">
-    <!-- Section 1: Demographics -->
+  <form action="${pageContext.request.contextPath}/" method="POST" id="clinicalIntakeForm" class="flex flex-col gap-4">
+  
     <div class="bg-surface-container-lowest rounded-lg p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3">
       <div class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
         <h2 class="text-xs font-bold text-on-surface uppercase tracking-wide">1. Demographics &amp; Identification</h2>
