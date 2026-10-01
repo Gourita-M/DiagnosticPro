@@ -1,23 +1,15 @@
 package org.example;
 
-import org.example.Moduls.Person;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import org.example.Models.Person;
+import org.example.dao.PersonDao;
+import org.example.enums.RoleType;
 
 public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("medicalPU");
 
-        EntityManager entityManager = factory.createEntityManager();
+    Person person = new Person(RoleType.NURSE,"123456","mouade@gmail.com","Mouad Gouritaa");
+    
+    PersonDao.addPerson(person);
 
-        Person person = entityManager.find(Person.class, 22);
-
-        System.out.println(person.getFullName());
-        System.out.println(person.getEmail());
-
-        entityManager.close();
-        factory.close();
     }
 }
