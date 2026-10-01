@@ -2,8 +2,9 @@ package org.example.Controllers;
 
 import java.io.IOException;
 
-import org.example.Moduls.Person;
+import org.example.Models.Person;
 import org.example.dao.PersonDao;
+import org.mindrot.jbcrypt.BCrypt;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,11 +32,11 @@ public class LoginController extends HttpServlet {
         throws  ServletException, IOException{
             
             String email = request.getParameter("email");
-            //String password = request.getParameter("password");
+            String password = request.getParameter("password");
 
             Person person = PersonDao.getPersonByEmail(email);
 
-            if(person == null){
+            if(person == null || !BCrypt.checkpw(password, person.getPassword())){
                 request.getSession().setAttribute(
                     "error",
                     "Your Email or Password is Incorrect"
