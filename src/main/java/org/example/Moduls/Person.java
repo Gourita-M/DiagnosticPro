@@ -1,9 +1,12 @@
 package org.example.Moduls;
 
 import org.example.enums.RoleType;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Person")
@@ -14,7 +17,12 @@ public class Person {
     protected String fullName;
     protected String email;
     protected String password;
+    @Enumerated(EnumType.STRING)
     protected RoleType role;
+
+    protected Person(){
+        
+    }
 
     public Person(Integer id, RoleType role, String password, String email, String fullName) {
         this.id = id;
