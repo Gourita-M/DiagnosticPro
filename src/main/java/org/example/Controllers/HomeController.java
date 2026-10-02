@@ -3,7 +3,9 @@ package org.example.Controllers;
 import java.io.IOException;
 
 import org.example.Models.Patient;
+import org.example.Models.Person;
 import org.example.dao.PatientDAO;
+import org.example.dao.PersonDao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,7 +31,9 @@ public class HomeController extends HttpServlet{
         HttpServletResponse respond
     ) throws ServletException, IOException{
 
+
         int ConnectedUserId = (Integer) request.getSession().getAttribute("userId");
+        Person person = PersonDao.getPersonById(ConnectedUserId);
         Patient patient = new Patient();
 
         patient.setFullName(request.getParameter("fullName"));
@@ -43,8 +47,13 @@ public class HomeController extends HttpServlet{
         patient.setRespiratoryRate(Integer.parseInt(request.getParameter("respiratoryRate")));
         patient.setWeight(Integer.parseInt(request.getParameter("weight")));
         patient.setHeight(Integer.parseInt(request.getParameter("height")));
+        patient.setPerson(person);
 
-        PatientDAO.addPatient(patient, ConnectedUserId);
-        
+        if(PatientDAO.addPatient(patient)){
+            System.out.println("Patient is added");
+        }else {
+            System.out.println("Error Adding new User");
+        }
+
     }
 }
