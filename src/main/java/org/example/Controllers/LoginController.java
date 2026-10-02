@@ -51,7 +51,7 @@ public class LoginController extends HttpServlet {
                     "userName",
                     person.getFullName()
                 );
-                response.sendRedirect(request.getContextPath() + "/");
+                response.sendRedirect(request.getContextPath() + "/nurse");
             }
 
         }
