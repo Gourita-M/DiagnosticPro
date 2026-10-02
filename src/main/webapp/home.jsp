@@ -44,7 +44,7 @@
         <span class="font-medium text-on-surface">Health Insurance:</span>
         <div class="flex items-center gap-4">
           <label class="flex items-center gap-1.5 cursor-pointer text-xs">
-            <input checked="" name="healthInsurance" type="radio" value="true" class="accent-primary text-xs">
+            <input checked="" name="healthInsurance" type="radio" value="0" class="accent-primary text-xs">
             <span class="text-on-surface">Active Coverage</span>
           </label>
           <label class="flex items-center gap-1.5 cursor-pointer text-xs">
@@ -362,5 +362,17 @@
     alert('SUCCESS: Patient Eleanor Vance Sterling (PT-90412) committed to Electronic Health Record. Triage notification dispatched to Dr. Elena Ramirez.');
   }
 </script></main></div>
+<%
+    Boolean done = (Boolean) session.getAttribute("done");
 
+    if (done != null && done) {
+%>
+
+<script>
+    alert("Patient is added");
+</script>
+
+<%
+    }
+%>
 </body></html>
