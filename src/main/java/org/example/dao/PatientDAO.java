@@ -1,7 +1,6 @@
 package org.example.dao;
 
 import org.example.Models.Patient;
-import org.example.Models.Person;
 import org.example.database.DataBase;
 
 import jakarta.persistence.EntityManager;
@@ -9,11 +8,18 @@ import jakarta.persistence.EntityManager;
 public class PatientDAO {
     private static final EntityManager entityManager = DataBase.jpa();
 
-    public static boolean addPatient(Patient patient, int connectedUserId){
+    public static boolean addPatient(Patient patient){
         
-        Person person = PersonDao.getPersonById(connectedUserId);
-        patient.setPerson(person);
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(patient);
+            entityManager.getTransaction().commit();
 
-        return true;
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
