@@ -65,7 +65,7 @@
         <div class="flex flex-col gap-1">
           <label class="text-xs font-medium text-on-surface">Blood Pressure</label>
           <div class="relative flex items-center">
-            <input class="w-full pl-2.5 pr-12 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none" name="bloodPressure" type="text" value="120/80">
+            <input class="w-full pl-2.5 pr-12 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none" name="bloodPressure" type="text" value="120">
             <span class="absolute right-2 text-[10px] text-outline font-medium">mmHg</span>
           </div>
         </div>
@@ -79,7 +79,7 @@
         <div class="flex flex-col gap-1">
           <label class="text-xs font-medium text-on-surface">Body Temp</label>
           <div class="relative flex items-center">
-            <input class="w-full pl-2.5 pr-8 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none" name="bodyTemperature" type="text" value="98.6">
+            <input class="w-full pl-2.5 pr-8 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none" name="bodyTemperature" type="text" value="98">
             <span class="absolute right-2 text-[10px] text-outline font-medium">°F</span>
           </div>
         </div>
@@ -93,7 +93,7 @@
         <div class="flex flex-col gap-1">
           <label class="text-xs font-medium text-on-surface">Weight</label>
           <div class="relative flex items-center">
-            <input class="w-full pl-2.5 pr-8 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none" name="weight" type="number" step="0.1" value="68.0">
+            <input class="w-full pl-2.5 pr-8 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none" name="weight" type="number" step="0.1" value="68">
             <span class="absolute right-2 text-[10px] text-outline font-medium">kg</span>
           </div>
         </div>
