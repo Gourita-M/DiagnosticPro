@@ -19,7 +19,7 @@ CREATE TABLE Patient (
     email VARCHAR(255) NOT NULL,
     phoneNumber VARCHAR(30) DEFAULT NULL,
     socialNumber VARCHAR(100) DEFAULT NULL,
-    healthInsurance TINYINT(1) DEFAULT NULL,
+    healthInsurance boolean DEFAULT NULL,
 
     bloodPressure INT DEFAULT NULL,
     heartRate INT DEFAULT NULL,
