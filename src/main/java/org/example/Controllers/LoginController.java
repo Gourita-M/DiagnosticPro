@@ -30,6 +30,8 @@ public class LoginController extends HttpServlet {
         HttpServletRequest request,
         HttpServletResponse response)
         throws  ServletException, IOException{
+            request.getSession().removeAttribute("success");
+            request.getSession().removeAttribute("error");
             
             String email = request.getParameter("email");
             String password = request.getParameter("password");
@@ -43,6 +45,10 @@ public class LoginController extends HttpServlet {
                 );
                 response.sendRedirect(request.getContextPath() + "/login");
             }else{
+                request.getSession().setAttribute(
+                    "success",
+                    "Welcome Back " + person.getFullName()
+                );
                 request.getSession().setAttribute(
                     "userId",
                     person.getId()
