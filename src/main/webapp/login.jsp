@@ -59,19 +59,63 @@
 
     </div>
 
-    <%
-        String error = (String) session.getAttribute("error");
-
-        if (error != null) {
-    %>
-
     <script>
-        alert("<%= error %>");
-    </script>
+  //error and success popup logic
 
-    <%
-            session.removeAttribute("error");
-        }
-    %>
+  function showSuccess() {
+        const popup = document.getElementById("successPopup");
+
+        popup.classList.remove("hidden");
+
+        setTimeout(() => {
+            popup.classList.add("hidden");
+        }, 5000);
+    }
+
+    function showError() {
+        const popup = document.getElementById("errorPopup");
+
+        popup.classList.remove("hidden");
+
+        setTimeout(() => {
+            popup.classList.add("hidden");
+        }, 5000);
+    }
+
+</script>
+
+<% if(session.getAttribute("success") != null){ %>
+<!-- SUCCESS POPUP -->
+<div id="successPopup"
+     class="fixed top-5 right-5 z-50 hidden w-80 rounded-lg border border-green-200 bg-white p-4 shadow-lg">
+
+    <div class="flex items-start gap-3">
+        
+        <div>
+            <h3 class="font-semibold text-green-700">
+                <%= session.getAttribute("success") %>
+            </h3>
+        </div>
+    </div>
+</div>
+<script>showSuccess()</script>
+<% } %>
+
+<% if(session.getAttribute("error") != null){ %>
+<!-- ERROR POPUP -->
+<div id="errorPopup"
+     class="fixed top-5 right-5 z-50 hidden w-80 rounded-lg border border-red-200 bg-white p-4 shadow-lg">
+
+    <div class="flex items-start gap-3">
+
+        <div>
+            <h3 class="font-semibold text-red-700">
+                <%= session.getAttribute("error") %>
+            </h3>
+        </div>
+    </div>
+</div>
+<script>showError()</script>
+<% } %>
 </body>
 </html>
