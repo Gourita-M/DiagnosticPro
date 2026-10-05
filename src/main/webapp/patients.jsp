@@ -1,9 +1,16 @@
+<%@ page import="java.util.List" %>
+<%@ page import="org.example.Models.Patient" %>
+
+<%
+    List<Patient> patients = (List<Patient>) request.getAttribute("patients");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Registered Patients</title>
 
     <!-- Fonts -->
@@ -549,13 +556,7 @@
 
             </div>
 
-            <input
-                class="date-filter"
-                type="date"
-                value="2026-10-02"
-            >
-
-            <a href="#" class="add-button">
+            <a href="nurse" class="add-button">
 
                 <span class="material-symbols-outlined">
                     person_add
@@ -590,12 +591,6 @@
 
                         <th>Patient</th>
 
-                        <th>Arrival</th>
-
-                        <th>National ID</th>
-
-                        <th>Vital Signs</th>
-
                         <th>Insurance</th>
 
                         <th>Status</th>
@@ -610,6 +605,7 @@
                     <tbody>
 
                     <!-- Patient 1 -->
+                <% for (Patient patient : patients) { %>
 
                     <tr>
 
@@ -624,7 +620,7 @@
                                 <div>
 
                                     <div class="patient-name">
-                                        Eleanor Adams
+                                        <%= patient.getFullName() %>
                                     </div>
 
                                     <div class="patient-id">
@@ -632,34 +628,6 @@
                                     </div>
 
                                 </div>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            08:42
-                        </td>
-
-                        <td>
-                            ********4829
-                        </td>
-
-                        <td>
-
-                            <div class="vitals">
-
-                                <span class="vital">
-                                    120/80
-                                </span>
-
-                                <span class="vital">
-                                    72 bpm
-                                </span>
-
-                                <span class="vital">
-                                    37.0°C
-                                </span>
 
                             </div>
 
@@ -680,6 +648,17 @@
                             </span>
 
                         </td>
+                        <!-- <td>
+
+                            <span class="status status-active">
+
+                                <span class="status-dot"></span>
+
+                                In Consultation
+
+                            </span>
+
+                        </td> -->
 
                         <td>
 
@@ -707,455 +686,11 @@
 
                     </tr>
 
-
-                    <!-- Patient 2 -->
-
-                    <tr>
-
-                        <td>
-
-                            <div class="patient">
-
-                                <div class="patient-avatar">
-                                    JM
-                                </div>
-
-                                <div>
-
-                                    <div class="patient-name">
-                                        James Miller
-                                    </div>
-
-                                    <div class="patient-id">
-                                        PT-00125
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            09:05
-                        </td>
-
-                        <td>
-                            ********1732
-                        </td>
-
-                        <td>
-
-                            <div class="vitals">
-
-                                <span class="vital">
-                                    128/82
-                                </span>
-
-                                <span class="vital">
-                                    78 bpm
-                                </span>
-
-                                <span class="vital">
-                                    36.8°C
-                                </span>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            Active
-                        </td>
-
-                        <td>
-
-                            <span class="status status-active">
-
-                                <span class="status-dot"></span>
-
-                                In Consultation
-
-                            </span>
-
-                        </td>
-
-                        <td>
-
-                            <div class="actions">
-
-                                <a href="#" class="action-button">
-
-                                    <span class="material-symbols-outlined">
-                                        visibility
-                                    </span>
-
-                                </a>
-
-                                <a href="#" class="action-button">
-
-                                    <span class="material-symbols-outlined">
-                                        edit
-                                    </span>
-
-                                </a>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-
-                    <!-- Patient 3 -->
-
-                    <tr>
-
-                        <td>
-
-                            <div class="patient">
-
-                                <div class="patient-avatar">
-                                    SO
-                                </div>
-
-                                <div>
-
-                                    <div class="patient-name">
-                                        Sarah Olsen
-                                    </div>
-
-                                    <div class="patient-id">
-                                        PT-00126
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            09:21
-                        </td>
-
-                        <td>
-                            ********8341
-                        </td>
-
-                        <td>
-
-                            <div class="vitals">
-
-                                <span class="vital">
-                                    118/76
-                                </span>
-
-                                <span class="vital">
-                                    69 bpm
-                                </span>
-
-                                <span class="vital">
-                                    36.7°C
-                                </span>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            Self-Pay
-                        </td>
-
-                        <td>
-
-                            <span class="status status-waiting">
-
-                                <span class="status-dot"></span>
-
-                                Waiting
-
-                            </span>
-
-                        </td>
-
-                        <td>
-
-                            <div class="actions">
-
-                                <a href="#" class="action-button">
-
-                                    <span class="material-symbols-outlined">
-                                        visibility
-                                    </span>
-
-                                </a>
-
-                                <a href="#" class="action-button">
-
-                                    <span class="material-symbols-outlined">
-                                        edit
-                                    </span>
-
-                                </a>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-
-                    <!-- Patient 4 -->
-
-                    <tr>
-
-                        <td>
-
-                            <div class="patient">
-
-                                <div class="patient-avatar">
-                                    RK
-                                </div>
-
-                                <div>
-
-                                    <div class="patient-name">
-                                        Robert King
-                                    </div>
-
-                                    <div class="patient-id">
-                                        PT-00127
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            09:47
-                        </td>
-
-                        <td>
-                            ********2940
-                        </td>
-
-                        <td>
-
-                            <div class="vitals">
-
-                                <span class="vital">
-                                    122/79
-                                </span>
-
-                                <span class="vital">
-                                    74 bpm
-                                </span>
-
-                                <span class="vital">
-                                    37.1°C
-                                </span>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            Active
-                        </td>
-
-                        <td>
-
-                            <span class="status status-completed">
-
-                                <span class="status-dot"></span>
-
-                                Completed
-
-                            </span>
-
-                        </td>
-
-                        <td>
-
-                            <div class="actions">
-
-                                <a href="#" class="action-button">
-
-                                    <span class="material-symbols-outlined">
-                                        visibility
-                                    </span>
-
-                                </a>
-
-                                <a href="#" class="action-button">
-
-                                    <span class="material-symbols-outlined">
-                                        edit
-                                    </span>
-
-                                </a>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-
-                    <!-- Patient 5 -->
-
-                    <tr>
-
-                        <td>
-
-                            <div class="patient">
-
-                                <div class="patient-avatar">
-                                    LM
-                                </div>
-
-                                <div>
-
-                                    <div class="patient-name">
-                                        Laura Martin
-                                    </div>
-
-                                    <div class="patient-id">
-                                        PT-00128
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            10:12
-                        </td>
-
-                        <td>
-                            ********6183
-                        </td>
-
-                        <td>
-
-                            <div class="vitals">
-
-                                <span class="vital">
-                                    130/85
-                                </span>
-
-                                <span class="vital">
-                                    81 bpm
-                                </span>
-
-                                <span class="vital">
-                                    37.2°C
-                                </span>
-
-                            </div>
-
-                        </td>
-
-                        <td>
-                            Active
-                        </td>
-
-                        <td>
-
-                            <span class="status status-waiting">
-
-                                <span class="status-dot"></span>
-
-                                Waiting
-
-                            </span>
-
-                        </td>
-
-                        <td>
-
-                            <div class="actions">
-
-                                <a href="#" class="action-button">
-
-                                    <span class="material-symbols-outlined">
-                                        visibility
-                                    </span>
-
-                                </a>
-
-                                <a href="#" class="action-button">
-
-                                    <span class="material-symbols-outlined">
-                                        edit
-                                    </span>
-
-                                </a>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
+            <% } %>
+                    
                     </tbody>
 
                 </table>
-
-            </div>
-
-
-            <!-- Pagination -->
-
-            <div style="
-                padding: 12px 16px;
-                border-top: 1px solid #e1e4ed;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            ">
-
-                <span style="
-                    font-size: 11px;
-                    color: #737784;
-                ">
-                    Showing 1–5 of 8 patients
-                </span>
-
-                <div style="display:flex; gap:5px;">
-
-                    <button class="action-button">
-                        <span class="material-symbols-outlined">
-                            chevron_left
-                        </span>
-                    </button>
-
-                    <button
-                        style="
-                            width:30px;
-                            height:30px;
-                            border:none;
-                            border-radius:6px;
-                            background:#003c90;
-                            color:white;
-                            font-size:11px;
-                            font-weight:600;
-                        ">
-                        1
-                    </button>
-
-                    <button class="action-button">
-                        <span class="material-symbols-outlined">
-                            chevron_right
-                        </span>
-                    </button>
-
-                </div>
 
             </div>
 
@@ -1165,5 +700,63 @@
 
 </div>
 
+   <script>
+  //error and success popup logic
+
+  function showSuccess() {
+        const popup = document.getElementById("successPopup");
+
+        popup.classList.remove("hidden");
+
+        setTimeout(() => {
+            popup.classList.add("hidden");
+        }, 5000);
+    }
+
+    function showError() {
+        const popup = document.getElementById("errorPopup");
+
+        popup.classList.remove("hidden");
+
+        setTimeout(() => {
+            popup.classList.add("hidden");
+        }, 5000);
+    }
+
+</script>
+
+<% if(session.getAttribute("success") != null){ %>
+<!-- SUCCESS POPUP -->
+<div id="successPopup"
+     class="fixed top-5 right-5 z-50 hidden w-80 rounded-lg border border-green-200 bg-white p-4 shadow-lg">
+
+    <div class="flex items-start gap-3">
+        
+        <div>
+            <h3 class="font-semibold text-green-700">
+                <%= session.getAttribute("success") %>
+            </h3>
+        </div>
+    </div>
+</div>
+<script>showSuccess()</script>
+<% } %>
+
+<% if(session.getAttribute("error") != null){ %>
+<!-- ERROR POPUP -->
+<div id="errorPopup"
+     class="fixed top-5 right-5 z-50 hidden w-80 rounded-lg border border-red-200 bg-white p-4 shadow-lg">
+
+    <div class="flex items-start gap-3">
+
+        <div>
+            <h3 class="font-semibold text-red-700">
+                <%= session.getAttribute("error") %>
+            </h3>
+        </div>
+    </div>
+</div>
+<script>showError()</script>
+<% } %>
 </body>
 </html>
