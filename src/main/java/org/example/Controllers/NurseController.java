@@ -21,6 +21,12 @@ public class NurseController extends HttpServlet{
         HttpServletRequest request,
         HttpServletResponse response
     ) throws ServletException, IOException {
+
+        if (request.getSession().getAttribute("userId") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
         request.getRequestDispatcher("/nurse.jsp")
                .forward(request, response);
     }
@@ -28,9 +34,10 @@ public class NurseController extends HttpServlet{
     @Override
     protected void doPost(
         HttpServletRequest request,
-        HttpServletResponse respond
+        HttpServletResponse response
     ) throws ServletException, IOException{
-
+        request.getSession().removeAttribute("success");
+        request.getSession().removeAttribute("error");    
 
         int ConnectedUserId = (Integer) request.getSession().getAttribute("userId");
         Person person = PersonDao.getPersonById(ConnectedUserId);
@@ -50,17 +57,22 @@ public class NurseController extends HttpServlet{
         patient.setPerson(person);
 
         if(PatientDAO.addPatient(patient)){
-            System.out.println("Patient is added");
             request.getSession().setAttribute(
-                    "done",
-                    "New Patient" + patient.getFullName() + "is Added"
+                    "success",
+                    "New Patient " + patient.getFullName() + " is Added"
             );
 
-            respond.sendRedirect(request.getContextPath() + "/patients");
-        }else {
-            System.out.println("Error Adding new User");
-        }
+            response.sendRedirect(request.getContextPath() + "/patients");
 
-        
+            System.out.println("Patient is added");
+
+            return;
+        }else {
+            request.getSession().setAttribute(
+                    "error",
+                    "Error Adding new Patient"
+            );
+            response.sendRedirect(request.getContextPath() + "/nurse");
+        } 
     }
 }
