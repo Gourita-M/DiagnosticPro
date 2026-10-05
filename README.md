@@ -133,4 +133,3 @@ This project is a functional academic / prototype healthcare management applicat
 ## License
 
 This project is for educational and demonstration purposes.
-
