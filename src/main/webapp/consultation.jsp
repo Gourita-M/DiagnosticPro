@@ -530,7 +530,7 @@
 
                                     <div>
                                         <h1>Consultation Management</h1>
-                                        
+
                                     </div>
 
                                 </div>
@@ -647,37 +647,36 @@
 
                         </td> -->
 
-                                                    <td>
-                                                        <div class="actions">
+                                              <td>
+    <div class="actions flex items-center gap-2">
 
-                                                            <form
-                                                                action="${pageContext.request.contextPath}/patient/Queue"
-                                                                method="POST" style="display: inline;">
+        <form action="${pageContext.request.contextPath}/"
+              method="GET">
 
-                                                                <input type="hidden" name="patientId"
-                                                                    value="<%= patient.getId() %>">
+            <input type="hidden"
+                   name="patientId"
+                   value="<%= patient.getId() %>">
 
-                                                                <button type="submit"
-        class="inline-flex items-center gap-2
-               rounded-lg bg-blue-600 px-4 py-2
-               text-sm font-semibold text-white
-               shadow-sm
-               transition-all duration-200
-               hover:bg-blue-700 hover:shadow-md
-               active:scale-95"
-        title="Send patient to queue">
+            <button type="submit"
+                    class="inline-flex items-center gap-2
+                           rounded-lg bg-gray-600 px-4 py-2
+                           text-sm font-semibold text-white
+                           shadow-sm
+                           transition-all duration-200
+                           hover:bg-gray-700 hover:shadow-md
+                           active:scale-95"
+                    title="View patient">
 
-    <span class="material-symbols-outlined text-[18px]">
-        send
-    </span>
+                <span class="material-symbols-outlined text-[18px]">
+                    visibility
+                </span>
 
-    Send to Queue
-</button>
+                View
+            </button>
+        </form>
 
-                                                            </form>
-
-                                                        </div>
-                                                    </td>
+    </div>
+</td>
 
                                                 </tr>
 
