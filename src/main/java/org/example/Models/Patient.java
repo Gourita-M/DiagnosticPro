@@ -20,6 +20,7 @@ public class Patient {
     private String phoneNumber;
     private String socialNumber;
     private String healthInsurance;
+    private int inQueue;
     private int bloodPressure;
     private int heartRate;
     private int bodyTemperature;
@@ -137,5 +138,13 @@ public class Patient {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public int getInQueue() {
+        return inQueue;
+    }
+
+    public void setInQueue(int inQueue) {
+        this.inQueue = inQueue;
     }
 }
