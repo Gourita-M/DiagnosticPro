@@ -20,7 +20,7 @@ CREATE TABLE Patient (
     phoneNumber VARCHAR(30) DEFAULT NULL,
     socialNumber VARCHAR(100) DEFAULT NULL,
     healthInsurance boolean DEFAULT NULL,
-
+    inQueue boolean DEFAULT FALSE,
     bloodPressure INT DEFAULT NULL,
     heartRate INT DEFAULT NULL,
     bodyTemperature INT DEFAULT NULL,
