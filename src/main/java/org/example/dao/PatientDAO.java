@@ -10,10 +10,8 @@ import jakarta.persistence.EntityManager;
 
 public class PatientDAO {
 
-    private static final EntityManager entityManager = DataBase.jpa();
-
-
     public static boolean addPatient(Patient patient) {
+        EntityManager entityManager = DataBase.jpa();
 
         try {
             entityManager.getTransaction().begin();
@@ -50,7 +48,9 @@ public class PatientDAO {
     }
 
     public static List<Patient> getAll(){
+        EntityManager entityManager = DataBase.jpa();
 
+        try{
         List<Patient> patients = entityManager
         .createQuery("FROM Patient", Patient.class)
         .getResultList();
@@ -59,7 +59,27 @@ public class PatientDAO {
             patients = null;
         }
         return patients;
+
+        }finally{
+            entityManager.close();
+        }
     }
 
-    public static 
+    public static void updateInQueueById(Patient p){
+        EntityManager entityManager = DataBase.jpa();
+
+        try{
+            entityManager.getTransaction().begin();
+            entityManager.merge(p);
+            entityManager.getTransaction().commit();
+        }catch(Exception e){
+            if(entityManager.getTransaction().isActive()){
+                entityManager.getTransaction().rollback();
+            }
+            throw e;
+        }finally{
+            entityManager.close();
+        }
+    }
+
 }
