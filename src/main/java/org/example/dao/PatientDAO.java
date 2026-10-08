@@ -10,9 +10,10 @@ import jakarta.persistence.EntityManager;
 
 public class PatientDAO {
 
-    public static boolean addPatient(Patient patient) {
+    private static final EntityManager entityManager = DataBase.jpa();
 
-        EntityManager entityManager = DataBase.jpa();
+
+    public static boolean addPatient(Patient patient) {
 
         try {
             entityManager.getTransaction().begin();
@@ -47,4 +48,18 @@ public class PatientDAO {
 
         return patients;
     }
+
+    public static List<Patient> getAll(){
+
+        List<Patient> patients = entityManager
+        .createQuery("FROM Patient", Patient.class)
+        .getResultList();
+
+        if(patients.isEmpty()){
+            patients = null;
+        }
+        return patients;
+    }
+
+    public static 
 }
