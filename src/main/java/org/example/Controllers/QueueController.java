@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.example.Models.Patient;
 import org.example.Models.Person;
+import org.example.dao.PatientDAO;
 import org.example.dao.PersonDao;
 import org.example.database.DataBase;
 
@@ -27,44 +28,22 @@ public class QueueController extends HttpServlet {
         int patientId = Integer.parseInt(
                 request.getParameter("patientId")
         );
+        int ConnectedUserId = (Integer) request.getSession().getAttribute("userId");
 
-        EntityManager em = DataBase.jpa();
-        EntityTransaction tr = em.getTransaction();
+        Person person = PersonDao.getPersonById(ConnectedUserId);
 
-        try {
-            tr.begin();
-
-            int ConnectedUserId = (Integer) request.getSession().getAttribute("userId");
-
-            Person nurse = PersonDao.getPersonById(ConnectedUserId);
-
-            Patient patient = null;
-
-            for(Patient patientt : nurse.getPatients()){
-                if(patientt.getId() == patientId){
-                    patient = patientt;
-                }
+        Patient patient = null;
+        for(Patient pat : person.getPatients()){
+            if(pat.getId() == patientId){
+                patient = pat;
             }
-
-            if (patient != null) {
-                patient.setInQueue(1);
-            }
-            
-            tr.commit();
-
-            em.clear();
-
-            response.sendRedirect(request.getContextPath() + "/patients");
-        } catch (Exception e) {
-
-            if (tr.isActive()) {
-                tr.rollback();
-            }
-
-            e.printStackTrace();
-
-        } finally {
-            em.close();
         }
+        if(patient != null){
+            patient.setInQueue(1);
+            PatientDAO.updateInQueueById(patient);
+        }
+
+        response.sendRedirect(request.getContextPath() + "/patients");
+
     }
 }
