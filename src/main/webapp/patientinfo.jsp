@@ -183,7 +183,7 @@
                         </p>
 
                         <p class="text-sm font-medium text-on-surface mt-1">
-                            ${patient.fullName}
+                            ${patient.getfullName()}
                         </p>
 
                     </div>
@@ -213,7 +213,7 @@
                         </p>
 
                         <p class="text-sm font-medium text-on-surface mt-1">
-                            +1 (555) 234-5678
+                            ${patient.getPhoneNumber()}
                         </p>
 
                     </div>
