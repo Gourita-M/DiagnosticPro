@@ -650,7 +650,7 @@
                                               <td>
     <div class="actions flex items-center gap-2">
 
-        <form action="${pageContext.request.contextPath}/"
+        <form action="${pageContext.request.contextPath}/info"
               method="GET">
 
             <input type="hidden"
