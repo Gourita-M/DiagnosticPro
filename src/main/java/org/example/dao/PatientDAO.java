@@ -7,6 +7,7 @@ import org.example.Models.Person;
 import org.example.database.DataBase;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 
 public class PatientDAO {
 
@@ -80,6 +81,25 @@ public class PatientDAO {
         }finally{
             entityManager.close();
         }
+    }
+
+    public static Patient getPatientById(int id){
+
+        EntityManager entityManager = DataBase.jpa();
+
+        Patient patient;
+
+        try {
+
+            patient = entityManager.find(Patient.class, id);
+
+        } catch (NoResultException e) {
+
+            patient = null;
+            
+        }
+
+        return patient;
     }
 
 }
