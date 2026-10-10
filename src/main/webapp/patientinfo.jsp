@@ -151,10 +151,6 @@
                 </div>
             </section>
 
-            <!-- ================================================= -->
-            <!-- DEMOGRAPHICS & CONTACT -->
-            <!-- ================================================= -->
-
             <section
                 class="bg-surface-container-lowest rounded-lg p-5 shadow-sm border border-outline-variant/30">
 
