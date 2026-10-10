@@ -30,6 +30,9 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Patient> patients = new ArrayList<>();
 
+    @OneToMany(mappedBy = "person")
+    private List<Consultation> consultation = new ArrayList<>();
+    
     protected Person(){
         
     }
