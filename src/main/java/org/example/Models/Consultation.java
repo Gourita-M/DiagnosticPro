@@ -2,6 +2,11 @@ package org.example.Models;
 
 import org.example.enums.ConsultationStatus;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Consultation")
 public class Consultation {
     private int id;
     private String reason;
@@ -9,6 +14,8 @@ public class Consultation {
     private String diagnosis;
     private Double cost;
     private ConsultationStatus status;
+
+    public Consultation(){}
 
     public Consultation(int id, ConsultationStatus status, Double cost, String diagnosis, String observations, String reason) {
         this.id = id;
