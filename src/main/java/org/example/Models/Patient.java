@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,14 +24,21 @@ public class Patient {
     private String email;
     private String phoneNumber;
     private String socialNumber;
-    private String healthInsurance;
+    private Boolean healthInsurance;
     private int inQueue;
-    private int bloodPressure;
+    private String bloodPressure;
     private int heartRate;
-    private int bodyTemperature;
+    private double bodyTemperature;
     private int respiratoryRate;
-    private int weight;
-    private int height;
+    private double weight;
+    private double height;
+    @Column(columnDefinition = "TEXT")
+    private String medicalHistory;
+    @Column(columnDefinition = "TEXT")
+    private String allergies;
+    @Column(columnDefinition = "TEXT")
+    private String currentTreatments;
+    private String medicalState;
 
     @ManyToOne
     @JoinColumn(name = "nurse_id")
@@ -83,19 +91,19 @@ public class Patient {
         this.socialNumber = socialNumber;
     }
 
-    public String getHealthInsurance() {
+    public Boolean getHealthInsurance() {
         return healthInsurance;
     }
 
-    public void setHealthInsurance(String healthInsurance) {
+    public void setHealthInsurance(Boolean healthInsurance) {
         this.healthInsurance = healthInsurance;
     }
 
-    public int getBloodPressure() {
+    public String getBloodPressure() {
         return bloodPressure;
     }
 
-    public void setBloodPressure(int bloodPressure) {
+    public void setBloodPressure(String bloodPressure) {
         this.bloodPressure = bloodPressure;
     }
 
@@ -107,11 +115,11 @@ public class Patient {
         this.heartRate = heartRate;
     }
 
-    public int getBodyTemperature() {
+    public double getBodyTemperature() {
         return bodyTemperature;
     }
 
-    public void setBodyTemperature(int bodyTemperature) {
+    public void setBodyTemperature(double bodyTemperature) {
         this.bodyTemperature = bodyTemperature;
     }
 
@@ -123,20 +131,52 @@ public class Patient {
         this.respiratoryRate = respiratoryRate;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
+    }
+
+    public String getMedicalHistory() {
+        return medicalHistory;
+    }
+
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    public String getCurrentTreatments() {
+        return currentTreatments;
+    }
+
+    public void setCurrentTreatments(String currentTreatments) {
+        this.currentTreatments = currentTreatments;
+    }
+
+    public String getMedicalState() {
+        return medicalState;
+    }
+
+    public void setMedicalState(String medicalState) {
+        this.medicalState = medicalState;
     }
 
     public Person getPerson() {

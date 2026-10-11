@@ -536,10 +536,16 @@
                                 </div>
 
                                 <div class="patient-count">
-                                    8 Patients Today
+                                    <%= patients.size() %> Patients Waiting
                                 </div>
 
                             </header>
+
+                            <% if ("1".equals(request.getParameter("expertiseSent"))) { %>
+                                <div role="status" class="mb-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-800">
+                                    Expertise request sent to the specialist. The patient has left the GP waiting queue.
+                                </div>
+                            <% } %>
 
                             <div class="toolbar">
 
@@ -650,11 +656,11 @@
                                               <td>
     <div class="actions flex items-center gap-2">
 
-        <form action="${pageContext.request.contextPath}/info"
+                <form action="${pageContext.request.contextPath}/consultation"
               method="GET">
 
             <input type="hidden"
-                   name="patientId"
+                                     name="patientId"
                    value="<%= patient.getId() %>">
 
             <button type="submit"
@@ -665,13 +671,13 @@
                            transition-all duration-200
                            hover:bg-gray-700 hover:shadow-md
                            active:scale-95"
-                    title="View patient">
+                    title="Start consultation">
 
                 <span class="material-symbols-outlined text-[18px]">
-                    visibility
+                    stethoscope
                 </span>
 
-                View
+                Consult
             </button>
         </form>
 

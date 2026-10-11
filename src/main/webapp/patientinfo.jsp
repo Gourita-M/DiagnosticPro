@@ -24,13 +24,14 @@
     String email = (patient != null && patient.getEmail() != null) ? patient.getEmail() : "Not provided";
     String phone = (patient != null && patient.getPhoneNumber() != null) ? patient.getPhoneNumber() : "Not provided";
     String socialNumber = (patient != null && patient.getSocialNumber() != null) ? patient.getSocialNumber() : "Not provided";
-    String insurance = (patient != null && patient.getHealthInsurance() != null) ? patient.getHealthInsurance() : "Not provided";
-    int bloodPressure = (patient != null) ? patient.getBloodPressure() : 0;
+        String insurance = (patient != null && patient.getHealthInsurance() != null)
+            ? (patient.getHealthInsurance() ? "Active coverage" : "Self-pay") : "Not provided";
+    String bloodPressure = (patient != null && patient.getBloodPressure() != null) ? patient.getBloodPressure() : "Not recorded";
     int heartRate = (patient != null) ? patient.getHeartRate() : 0;
-    int temperature = (patient != null) ? patient.getBodyTemperature() : 0;
+    double temperature = (patient != null) ? patient.getBodyTemperature() : 0;
     int respiratoryRate = (patient != null) ? patient.getRespiratoryRate() : 0;
-    int weight = (patient != null) ? patient.getWeight() : 0;
-    int height = (patient != null) ? patient.getHeight() : 0;
+    double weight = (patient != null) ? patient.getWeight() : 0;
+    double height = (patient != null) ? patient.getHeight() : 0;
 
     double bmi = 0;
     if (height > 0 && weight > 0) {
@@ -249,7 +250,7 @@
 
                     <div class="bg-surface-container-low rounded-md p-3 border border-outline-variant/10">
                         <p class="text-[11px] text-outline font-medium">Temperature</p>
-                        <p class="text-xl font-bold font-mono text-primary mt-2"><%= temperature %></p>
+                        <p class="text-xl font-bold font-mono text-primary mt-2"><%= String.format("%.1f", temperature) %></p>
                         <p class="text-[10px] text-outline mt-1">°F</p>
                     </div>
 
@@ -261,13 +262,13 @@
 
                     <div class="bg-surface-container-low rounded-md p-3 border border-outline-variant/10">
                         <p class="text-[11px] text-outline font-medium">Weight</p>
-                        <p class="text-xl font-bold font-mono text-primary mt-2"><%= weight %></p>
+                        <p class="text-xl font-bold font-mono text-primary mt-2"><%= String.format("%.1f", weight) %></p>
                         <p class="text-[10px] text-outline mt-1">kg</p>
                     </div>
 
                     <div class="bg-surface-container-low rounded-md p-3 border border-outline-variant/10">
                         <p class="text-[11px] text-outline font-medium">Height</p>
-                        <p class="text-xl font-bold font-mono text-primary mt-2"><%= height %></p>
+                        <p class="text-xl font-bold font-mono text-primary mt-2"><%= String.format("%.1f", height) %></p>
                         <p class="text-[10px] text-outline mt-1">cm</p>
                     </div>
                 </div>

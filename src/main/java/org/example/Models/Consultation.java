@@ -1,9 +1,11 @@
 package org.example.Models;
 
 import org.example.enums.ConsultationStatus;
-import org.example.Models.Patient;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,9 +21,18 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String reason;
+    @Column(columnDefinition = "TEXT")
     private String observations;
+    @Column(columnDefinition = "TEXT")
     private String diagnosis;
+    @Column(columnDefinition = "TEXT")
+    private String symptoms;
+    @Column(columnDefinition = "TEXT")
+    private String examination;
+    @Column(columnDefinition = "TEXT")
+    private String prescribedTreatment;
     private Double cost;
+    @Enumerated(EnumType.STRING)
     private ConsultationStatus status;
 
     @ManyToOne
@@ -74,6 +85,30 @@ public class Consultation {
 
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
+    }
+
+    public String getSymptoms() {
+        return symptoms;
+    }
+
+    public void setSymptoms(String symptoms) {
+        this.symptoms = symptoms;
+    }
+
+    public String getExamination() {
+        return examination;
+    }
+
+    public void setExamination(String examination) {
+        this.examination = examination;
+    }
+
+    public String getPrescribedTreatment() {
+        return prescribedTreatment;
+    }
+
+    public void setPrescribedTreatment(String prescribedTreatment) {
+        this.prescribedTreatment = prescribedTreatment;
     }
 
     public Double getCost() {

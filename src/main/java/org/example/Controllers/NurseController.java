@@ -39,7 +39,13 @@ public class NurseController extends HttpServlet{
         request.getSession().removeAttribute("success");
         request.getSession().removeAttribute("error");    
 
-        int ConnectedUserId = (Integer) request.getSession().getAttribute("userId");
+        Integer connectedUserId = (Integer) request.getSession().getAttribute("userId");
+        if (connectedUserId == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        int ConnectedUserId = connectedUserId;
         Person person = PersonDao.getPersonById(ConnectedUserId);
         Patient patient = new Patient();
 
@@ -47,13 +53,18 @@ public class NurseController extends HttpServlet{
         patient.setEmail(request.getParameter("email"));
         patient.setPhoneNumber(request.getParameter("phoneNumber"));
         patient.setSocialNumber(request.getParameter("socialNumber"));
-        patient.setHealthInsurance(request.getParameter("healthInsurance"));
-        patient.setBloodPressure(Integer.parseInt(request.getParameter("bloodPressure")));
-        patient.setHeartRate(Integer.parseInt(request.getParameter("heartRate")));
-        patient.setBodyTemperature(Integer.parseInt(request.getParameter("bodyTemperature")));
-        patient.setRespiratoryRate(Integer.parseInt(request.getParameter("respiratoryRate")));
-        patient.setWeight(Integer.parseInt(request.getParameter("weight")));
-        patient.setHeight(Integer.parseInt(request.getParameter("height")));
+        patient.setHealthInsurance(Boolean.valueOf(request.getParameter("healthInsurance")));
+        patient.setBloodPressure(request.getParameter("bloodPressure"));
+        patient.setHeartRate(parseInteger(request.getParameter("heartRate")));
+        patient.setBodyTemperature(parseDecimal(request.getParameter("bodyTemperature")));
+        patient.setRespiratoryRate(parseInteger(request.getParameter("respiratoryRate")));
+        patient.setWeight(parseDecimal(request.getParameter("weight")));
+        patient.setHeight(parseDecimal(request.getParameter("height")));
+        patient.setMedicalHistory(request.getParameter("name"));
+        patient.setMedicalState(request.getParameter("state"));
+        patient.setAllergies(request.getParameter("allergies"));
+        patient.setCurrentTreatments(request.getParameter("currentTreatments"));
+        patient.setInQueue(1);
         patient.setPerson(person);
 
         if(PatientDAO.addPatient(patient)){
@@ -62,7 +73,7 @@ public class NurseController extends HttpServlet{
                     "New Patient " + patient.getFullName() + " is Added"
             );
 
-            response.sendRedirect(request.getContextPath() + "/patients");
+            response.sendRedirect(request.getContextPath() + "/nurse");
 
             System.out.println("Patient is added");
 
@@ -70,9 +81,17 @@ public class NurseController extends HttpServlet{
         }else {
             request.getSession().setAttribute(
                     "error",
-                    "Error Adding new Patient"
+                    "Unable to save patient. Confirm the email is unique and the database schema is up to date."
             );
             response.sendRedirect(request.getContextPath() + "/nurse");
         } 
+    }
+
+    private int parseInteger(String value) {
+        return value == null || value.isBlank() ? 0 : Integer.parseInt(value);
+    }
+
+    private double parseDecimal(String value) {
+        return value == null || value.isBlank() ? 0 : Double.parseDouble(value);
     }
 }

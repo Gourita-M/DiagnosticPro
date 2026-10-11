@@ -17,6 +17,7 @@ public class PatientDAO {
         try {
             entityManager.getTransaction().begin();
 
+            patient.setPerson(entityManager.getReference(Person.class, patient.getPerson().getId()));
             entityManager.persist(patient);
 
             entityManager.getTransaction().commit();
@@ -38,14 +39,17 @@ public class PatientDAO {
     }
 
     public static List<Patient> getNursePatients(Person nurse){
+        EntityManager entityManager = DataBase.jpa();
 
-        List<Patient> patients = nurse.getPatients();
-
-        if(patients.isEmpty()){
-            patients = null;
+        try {
+            return entityManager.createQuery(
+                    "SELECT p FROM Patient p WHERE p.person.id = :nurseId ORDER BY p.id DESC",
+                    Patient.class)
+                    .setParameter("nurseId", nurse.getId())
+                    .getResultList();
+        } finally {
+            entityManager.close();
         }
-
-        return patients;
     }
 
     public static List<Patient> getAll(){
@@ -94,9 +98,9 @@ public class PatientDAO {
             patient = entityManager.find(Patient.class, id);
 
         } catch (NoResultException e) {
-
             patient = null;
-            
+        } finally {
+            entityManager.close();
         }
 
         return patient;

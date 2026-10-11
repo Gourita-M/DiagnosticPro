@@ -115,28 +115,27 @@
                 <label class="text-xs font-medium text-on-surface">Full Name <span class="text-error">*</span></label>
                 <input
                   class="w-full px-2.5 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                  name="fullName" required="" type="text" value="Eleanor Vance Sterling" placeholder="Full legal name">
+                  name="fullName" required="" type="text" placeholder="Full legal name">
               </div>
               <div class="flex flex-col gap-1">
                 <label class="text-xs font-medium text-on-surface">Email <span class="text-error">*</span></label>
                 <input
                   class="w-full px-2.5 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                  name="email" required="" type="email" value="e.vance@examplehealth.org"
-                  placeholder="name@example.com">
+                  name="email" required="" type="email" placeholder="name@example.com">
               </div>
               <div class="flex flex-col gap-1">
                 <label class="text-xs font-medium text-on-surface">Phone Number <span
                     class="text-error">*</span></label>
                 <input
                   class="w-full px-2.5 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                  name="phoneNumber" required="" type="tel" value="+1 (555) 234-5678" placeholder="+1 (555) 000-0000">
+                  name="phoneNumber" required="" type="tel" placeholder="+1 (555) 000-0000">
               </div>
               <div class="flex flex-col gap-1">
                 <label class="text-xs font-medium text-on-surface">SSN / National ID <span
                     class="text-error">*</span></label>
                 <input
                   class="w-full px-2.5 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                  name="socialNumber" required="" type="text" value="••• - •• - 4829" placeholder="XXX-XX-XXXX">
+                  name="socialNumber" required="" type="text" placeholder="National identification number">
               </div>
             </div>
             <!-- Insurance Compact Switch -->
@@ -144,7 +143,7 @@
               <span class="font-medium text-on-surface">Health Insurance:</span>
               <div class="flex items-center gap-4">
                 <label class="flex items-center gap-1.5 cursor-pointer text-xs">
-                  <input checked="" name="healthInsurance" type="radio" value="0" class="accent-primary text-xs">
+                  <input checked="" name="healthInsurance" type="radio" value="true" class="accent-primary text-xs">
                   <span class="text-on-surface">Active Coverage</span>
                 </label>
                 <label class="flex items-center gap-1.5 cursor-pointer text-xs">
@@ -168,7 +167,7 @@
                 <div class="relative flex items-center">
                   <input
                     class="w-full pl-2.5 pr-12 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                    name="bloodPressure" type="text" value="120">
+                    name="bloodPressure" type="text" placeholder="120/80">
                   <span class="absolute right-2 text-[10px] text-outline font-medium">mmHg</span>
                 </div>
               </div>
@@ -177,7 +176,7 @@
                 <div class="relative flex items-center">
                   <input
                     class="w-full pl-2.5 pr-10 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                    name="heartRate" type="number" value="72">
+                    name="heartRate" type="number" placeholder="bpm">
                   <span class="absolute right-2 text-[10px] text-outline font-medium">bpm</span>
                 </div>
               </div>
@@ -186,7 +185,7 @@
                 <div class="relative flex items-center">
                   <input
                     class="w-full pl-2.5 pr-8 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                    name="bodyTemperature" type="text" value="98">
+                    name="bodyTemperature" type="number" step="0.1" placeholder="°F">
                   <span class="absolute right-2 text-[10px] text-outline font-medium">°F</span>
                 </div>
               </div>
@@ -195,7 +194,7 @@
                 <div class="relative flex items-center">
                   <input
                     class="w-full pl-2.5 pr-14 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                    name="respiratoryRate" type="number" value="16">
+                    name="respiratoryRate" type="number" placeholder="breaths/min">
                   <span class="absolute right-2 text-[10px] text-outline font-medium">breaths/m</span>
                 </div>
               </div>
@@ -204,7 +203,7 @@
                 <div class="relative flex items-center">
                   <input
                     class="w-full pl-2.5 pr-8 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                    name="weight" type="number" step="0.1" value="68">
+                    name="weight" type="number" step="0.1" placeholder="kg">
                   <span class="absolute right-2 text-[10px] text-outline font-medium">kg</span>
                 </div>
               </div>
@@ -213,7 +212,7 @@
                 <div class="relative flex items-center">
                   <input
                     class="w-full pl-2.5 pr-8 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                    name="height" type="number" step="0.5" value="175">
+                    name="height" type="number" step="0.5" placeholder="cm">
                   <span class="absolute right-2 text-[10px] text-outline font-medium">cm</span>
                 </div>
               </div>
@@ -224,17 +223,23 @@
           <div
             class="bg-surface-container-lowest rounded-lg p-4 shadow-sm border border-outline-variant/30 flex flex-col gap-3">
             <label class="flex items-center gap-2 cursor-pointer select-none text-xs font-medium text-on-surface">
-              <input id="conditionCheckbox" checked="" class="accent-primary rounded" type="checkbox"
+              <input id="conditionCheckbox" class="accent-primary rounded" type="checkbox"
                 onchange="document.getElementById('conditionDetails').classList.toggle('hidden', !this.checked)">
               <span class="">Add Medical Condition &amp; Treatment (Optional)</span>
             </label>
-            <div id="conditionDetails" class="flex flex-col gap-3 pt-2 border-t border-outline-variant/20">
+            <div id="conditionDetails" class="hidden flex flex-col gap-3 pt-2 border-t border-outline-variant/20">
               <div class="flex flex-col gap-1">
                 <label class="text-xs font-medium text-on-surface">Condition / Diagnosis Name</label>
                 <input
                   class="w-full px-2.5 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                  name="name" type="text" value="Type 2 Diabetes Mellitus (E11.9)"
+                  name="name" type="text"
                   placeholder="e.g. Type 2 Diabetes, Hypertension">
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="text-xs font-medium text-on-surface">Allergies</label>
+                <input
+                  class="w-full px-2.5 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
+                  name="allergies" type="text" placeholder="Medication, food, or environmental allergies">
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div class="flex flex-col gap-1">
@@ -252,7 +257,7 @@
                   <label class="text-xs font-medium text-on-surface">Current Treatments &amp; Regimens</label>
                   <input
                     class="w-full px-2.5 py-1.5 bg-surface-container-low rounded-md text-xs text-on-surface border border-transparent focus:border-primary focus:bg-surface-container-lowest focus:outline-none"
-                    name="currentTreatments" type="text" value="Metformin 500mg PO BID; Lisinopril 10mg"
+                    name="currentTreatments" type="text"
                     placeholder="Medications, dosages, frequency">
                 </div>
               </div>

@@ -7,7 +7,7 @@ import org.example.enums.RoleType;
 public class Main {
     public static void main(String[] args) {
 
-    Person person = new Person(RoleType.NURSE,"123456","omar.tazi@gmail.com","Mouad Gouritaa");
+    Person person = new Person(RoleType.SPECIALIST,"123456","spe@gmail.com","Mouad Gouritaa");
     
     PersonDao.addPerson(person);
 

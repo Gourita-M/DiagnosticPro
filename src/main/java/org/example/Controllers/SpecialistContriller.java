@@ -2,6 +2,14 @@ package org.example.Controllers;
 
 import java.io.IOException;
 
+import org.example.Models.ExpertiseRequest;
+import org.example.Models.Person;
+import org.example.dao.ExpertiseRequestDAO;
+import org.example.dao.PersonDao;
+import org.example.enums.RoleType;
+
+import java.util.List;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,6 +24,21 @@ public class SpecialistContriller extends HttpServlet{
         HttpServletRequest request,
         HttpServletResponse response
     )throws ServletException, IOException{
+
+        Integer specialistId = (Integer) request.getSession().getAttribute("userId");
+        if (specialistId == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        Person specialist = PersonDao.getPersonById(specialistId);
+        if (specialist == null || specialist.getRole() != RoleType.SPECIALIST) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
+
+        List<ExpertiseRequest> expertiseRequests = ExpertiseRequestDAO.getRequestsForSpecialist(specialistId);
+        request.setAttribute("expertiseRequests", expertiseRequests);
 
         request.getRequestDispatcher("/Specialist.jsp")
                .forward(request, response);

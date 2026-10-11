@@ -17,15 +17,20 @@ CREATE TABLE Patient (
     id INT NOT NULL AUTO_INCREMENT,
     fullName VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
+    inQueue INT NOT NULL DEFAULT 0,
     phoneNumber VARCHAR(30) DEFAULT NULL,
     socialNumber VARCHAR(100) DEFAULT NULL,
     healthInsurance BOOLEAN DEFAULT NULL,
-    bloodPressure INT DEFAULT NULL,
+    bloodPressure VARCHAR(20) DEFAULT NULL,
     heartRate INT DEFAULT NULL,
-    bodyTemperature INT DEFAULT NULL,
+    bodyTemperature DECIMAL(5,2) DEFAULT NULL,
     respiratoryRate INT DEFAULT NULL,
-    weight INT DEFAULT NULL,
-    height INT DEFAULT NULL,
+    weight DECIMAL(6,2) DEFAULT NULL,
+    height DECIMAL(6,2) DEFAULT NULL,
+    medicalHistory TEXT DEFAULT NULL,
+    allergies TEXT DEFAULT NULL,
+    currentTreatments TEXT DEFAULT NULL,
+    medicalState VARCHAR(100) DEFAULT NULL,
 
     nurse_id INT NOT NULL,
 
@@ -44,6 +49,9 @@ CREATE TABLE Consultation (
     reason VARCHAR(500) DEFAULT NULL,
     observations TEXT DEFAULT NULL,
     diagnosis TEXT DEFAULT NULL,
+    symptoms TEXT DEFAULT NULL,
+    examination TEXT DEFAULT NULL,
+    prescribedTreatment TEXT DEFAULT NULL,
     cost DECIMAL(10,2) DEFAULT NULL,
 
     status ENUM('OPEN', 'PENDING', 'COMPLETED') NOT NULL,
@@ -75,10 +83,17 @@ CREATE TABLE ExpertiseRequest (
 
     status ENUM('PENDING', 'COMPLETED') NOT NULL,
 
+    patient_id INT NOT NULL,
     specialist_id INT NOT NULL,
     practitioner_id INT NOT NULL,
 
     PRIMARY KEY (id),
+
+    CONSTRAINT fk_expertise_patient
+        FOREIGN KEY (patient_id)
+        REFERENCES Patient(id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
 
     CONSTRAINT fk_expertise_specialist
         FOREIGN KEY (specialist_id)

@@ -536,7 +536,7 @@
                                 </div>
 
                                 <div class="patient-count">
-                                    8 Patients Today
+                                    <%= patients.size() %> Patients
                                 </div>
 
                             </header>
@@ -604,7 +604,12 @@
                                         <tbody>
 
                                             <!-- Patient 1 -->
-                                            <% for (Patient patient : patients) { %>
+                                            <% for (Patient patient : patients) {
+                                                String patientName = patient.getFullName() == null ? "" : patient.getFullName();
+                                                String patientInitials = patientName.length() >= 2
+                                                        ? patientName.substring(0, 2).toUpperCase()
+                                                        : patientName.toUpperCase();
+                                            %>
 
                                                 <tr>
 
@@ -613,7 +618,7 @@
                                                         <div class="patient">
 
                                                             <div class="patient-avatar">
-                                                                EA
+                                                                <%= patientInitials %>
                                                             </div>
 
                                                             <div>
@@ -623,7 +628,7 @@
                                                                 </div>
 
                                                                 <div class="patient-id">
-                                                                    PT-00124
+                                                                    PT-<%= patient.getId() %>
                                                                 </div>
 
                                                             </div>
@@ -633,19 +638,21 @@
                                                     </td>
 
                                                     <td>
-                                                        Active
+                                                        <%= patient.getHealthInsurance() == null ? "Not provided" : (patient.getHealthInsurance() ? "Active coverage" : "Self-pay") %>
                                                     </td>
 
                                                     <td>
-
-                                                        <span class="status status-waiting">
-
-                                                            <span class="status-dot"></span>
-
-                                                            Waiting
-
-                                                        </span>
-
+                                                        <% if (patient.getInQueue() == 1) { %>
+                                                            <span class="status status-waiting">
+                                                                <span class="status-dot"></span>
+                                                                Waiting
+                                                            </span>
+                                                        <% } else { %>
+                                                            <span class="status">
+                                                                <span class="status-dot"></span>
+                                                                Not in queue
+                                                            </span>
+                                                        <% } %>
                                                     </td>
                                                     <!-- <td>
 
@@ -661,6 +668,7 @@
 
                                                     <td>
                                                         <div class="actions">
+                                                            <% if (patient.getInQueue() == 0) { %>
 
                                                             <form
                                                                 action="${pageContext.request.contextPath}/patient/Queue"
@@ -687,6 +695,9 @@
 </button>
 
                                                             </form>
+                                                            <% } else { %>
+                                                                <span class="text-sm text-slate-600">Already waiting</span>
+                                                            <% } %>
 
                                                         </div>
                                                     </td>

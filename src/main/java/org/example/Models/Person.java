@@ -35,9 +35,16 @@ public class Person {
 
     @OneToMany(mappedBy = "specialist")
     private List<ExpertiseRequest> expertiseRequest = new ArrayList<>();
+
+    @OneToMany(mappedBy = "practitioner")
+    private List<ExpertiseRequest> sentExpertiseRequests = new ArrayList<>();
     
     protected Person(){
         
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Person(RoleType role, String password, String email, String fullName) {
@@ -105,5 +112,13 @@ public class Person {
 
     public void setExpertiseRequest(List<ExpertiseRequest> expertiseRequest) {
         this.expertiseRequest = expertiseRequest;
+    }
+
+    public List<ExpertiseRequest> getSentExpertiseRequests() {
+        return sentExpertiseRequests;
+    }
+
+    public void setSentExpertiseRequests(List<ExpertiseRequest> sentExpertiseRequests) {
+        this.sentExpertiseRequests = sentExpertiseRequests;
     }
 }
