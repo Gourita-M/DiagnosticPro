@@ -24,6 +24,32 @@
     <title>Specialist Referrals</title>
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-900">
+    <header class="bg-white border border-gray-200 rounded-lg px-5 py-3 shadow-sm flex items-center justify-between">
+
+    <!-- User -->
+    <div>
+        <p class="text-sm font-semibold text-gray-900">
+            ${sessionScope.userName}
+        </p>
+
+        <p class="text-xs text-gray-500">
+            ${sessionScope.role}
+        </p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex items-center gap-4">
+
+        <form action="${pageContext.request.contextPath}/logout" method="POST">
+            <button type="submit"
+                class="px-3 py-1.5 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors">
+                Logout
+            </button>
+        </form>
+
+    </nav>
+
+</header>
 <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
     <header class="mb-7 flex flex-wrap items-end justify-between gap-4 border-b border-slate-200 pb-5">
         <div>

@@ -117,7 +117,37 @@
 </head>
 
 <body class="bg-surface font-body text-on-surface">
+<header class="bg-white border border-gray-200 rounded-lg px-5 py-3 shadow-sm flex items-center justify-between">
 
+    <!-- User -->
+    <div>
+        <p class="text-sm font-semibold text-gray-900">
+            ${sessionScope.userName}
+        </p>
+
+        <p class="text-xs text-gray-500">
+            ${sessionScope.role}
+        </p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex items-center gap-4">
+
+        <a href="${pageContext.request.contextPath}/patients"
+           class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+            Patients
+        </a>
+
+        <form action="${pageContext.request.contextPath}/logout" method="POST">
+            <button type="submit"
+                class="px-3 py-1.5 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors">
+                Logout
+            </button>
+        </form>
+
+    </nav>
+
+</header>
     <main class="w-full min-h-screen px-4 md:px-8 py-6">
 
         <div class="max-w-5xl mx-auto flex flex-col gap-5">

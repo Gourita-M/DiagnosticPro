@@ -26,13 +26,12 @@ public class ConsultationController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Integer practitionerId = (Integer) request.getSession().getAttribute("userId");
+        RoleType role = (RoleType) request.getSession().getAttribute("role");
+
         if (practitionerId == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
-        }
-
-        Person practitioner = PersonDao.getPersonById(practitionerId);
-        if (practitioner == null || practitioner.getRole() != RoleType.PRACTITIONER) {
+        }else if(role != RoleType.PRACTITIONER || role == null){
             response.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }

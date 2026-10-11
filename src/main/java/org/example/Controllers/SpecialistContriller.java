@@ -26,8 +26,14 @@ public class SpecialistContriller extends HttpServlet{
     )throws ServletException, IOException{
 
         Integer specialistId = (Integer) request.getSession().getAttribute("userId");
-        if (specialistId == null) {
+
+        RoleType role = (RoleType) request.getSession().getAttribute("role");
+
+        if (request.getSession().getAttribute("userId") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }else if(role != RoleType.SPECIALIST || role == null){
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
 

@@ -9,6 +9,7 @@ import java.rmi.ServerException;
 
 import org.example.Models.Patient;
 import org.example.dao.PatientDAO;
+import org.example.enums.RoleType;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,6 +24,15 @@ public class PatientInfoController extends HttpServlet{
     )throws ServletException, IOException{
 
         int patientId = Integer.parseInt(request.getParameter("patientId"));
+        RoleType role = (RoleType) request.getSession().getAttribute("role");
+
+        if (request.getSession().getAttribute("userId") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }else if(role != RoleType.NURSE || role == null){
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
         
         Patient patient = PatientDAO.getPatientById(patientId);
 

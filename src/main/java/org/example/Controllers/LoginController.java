@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.example.Models.Person;
 import org.example.dao.PersonDao;
+import org.example.enums.RoleType;
 import org.mindrot.jbcrypt.BCrypt;
 
 import jakarta.servlet.ServletException;
@@ -57,7 +58,17 @@ public class LoginController extends HttpServlet {
                     "userName",
                     person.getFullName()
                 );
-                response.sendRedirect(request.getContextPath() + "/nurse");
+                request.getSession().setAttribute(
+                    "role",
+                    person.getRole()
+                );
+                if(person.getRole().equals(RoleType.NURSE)){
+                    response.sendRedirect(request.getContextPath() + "/nurse");
+                }else if(person.getRole().equals(RoleType.PRACTITIONER)){
+                    response.sendRedirect(request.getContextPath() + "/consultation");
+                }else{
+                    response.sendRedirect(request.getContextPath() + "/Specialist");
+                }
             }
 
         }
