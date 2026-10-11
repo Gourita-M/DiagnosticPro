@@ -2,11 +2,24 @@ package org.example.Models;
 
 import org.example.enums.MedicalState;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "MedicalHistory")
 public class MedicalHistory {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String currentTreatments;
     private MedicalState state;
+
+    public MedicalHistory(){}
 
     public MedicalHistory(int id, MedicalState state, String currentTreatments, String name) {
         this.id = id;
@@ -46,4 +59,6 @@ public class MedicalHistory {
     public void setState(MedicalState state) {
         this.state = state;
     }
+
+
 }

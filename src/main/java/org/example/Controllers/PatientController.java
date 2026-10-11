@@ -37,7 +37,7 @@ public class PatientController extends HttpServlet{
 
         Person nurse = PersonDao.getPersonById(ConnectedUserId);
 
-        List<Patient> patients = PatientDAO.getNursePatients(nurse).stream()
+        List<Patient> patients = nurse.getPatients().stream()
           .filter(p -> p.getInQueue() == 0)
           .collect(Collectors.toList());
 

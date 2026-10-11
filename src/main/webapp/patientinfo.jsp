@@ -335,14 +335,14 @@
                 href="${pageContext.request.contextPath}/consultation"
                     type="button"
                     class="px-4 py-2 rounded-md bg-surface-container text-xs font-semibold text-on-surface hover:bg-surface-container-high transition-colors">
-                    Back to Patients
+                    Direct Care
                 </a>
 
                 <a
                 href="${pageContext.request.contextPath}/Specialist"
                     type="button"
                     class="px-4 py-2 rounded-md bg-primary text-xs font-semibold text-white hover:bg-primary-container transition-colors shadow-sm">
-                    Send To Specialist
+                    Request a Specialist Opinion
                 </a>
 
             </div>

@@ -1,11 +1,15 @@
 package org.example.Models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,6 +35,9 @@ public class Patient {
     @ManyToOne
     @JoinColumn(name = "nurse_id")
     private Person person;
+
+    @OneToMany
+    List<Consultation> consultations = new ArrayList<>();
 
     public Patient() {
 
@@ -146,5 +153,13 @@ public class Patient {
 
     public void setInQueue(int inQueue) {
         this.inQueue = inQueue;
+    }
+
+    public List<Consultation> getConsultations() {
+        return consultations;
+    }
+
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations = consultations;
     }
 }

@@ -30,8 +30,11 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Patient> patients = new ArrayList<>();
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "practitioner")
     private List<Consultation> consultation = new ArrayList<>();
+
+    @OneToMany(mappedBy = "specialist")
+    private List<ExpertiseRequest> expertiseRequest = new ArrayList<>();
     
     protected Person(){
         
@@ -42,14 +45,6 @@ public class Person {
         this.password = password;
         this.email = email;
         this.fullName = fullName;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getFullName() {
@@ -92,4 +87,23 @@ public class Person {
         this.patients = patients;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Consultation> getConsultation() {
+        return consultation;
+    }
+
+    public void setConsultation(List<Consultation> consultation) {
+        this.consultation = consultation;
+    }
+
+    public List<ExpertiseRequest> getExpertiseRequest() {
+        return expertiseRequest;
+    }
+
+    public void setExpertiseRequest(List<ExpertiseRequest> expertiseRequest) {
+        this.expertiseRequest = expertiseRequest;
+    }
 }

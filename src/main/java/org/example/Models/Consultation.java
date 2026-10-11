@@ -1,19 +1,37 @@
 package org.example.Models;
 
 import org.example.enums.ConsultationStatus;
+import org.example.Models.Patient;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Consultation")
 public class Consultation {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String reason;
     private String observations;
     private String diagnosis;
     private Double cost;
     private ConsultationStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(name = "practitioner_id")
+    private Person practitioner;
+
 
     public Consultation(){}
 
@@ -72,5 +90,21 @@ public class Consultation {
 
     public void setStatus(ConsultationStatus status) {
         this.status = status;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Person getPractitioner() {
+        return practitioner;
+    }
+
+    public void setPractitioner(Person practitioner) {
+        this.practitioner = practitioner;
     }
 }

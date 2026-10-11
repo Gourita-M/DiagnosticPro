@@ -11,7 +11,7 @@ CREATE TABLE Person (
 
     PRIMARY KEY (id),
     UNIQUE KEY uk_person_email (email)
-)
+);
 
 CREATE TABLE Patient (
     id INT NOT NULL AUTO_INCREMENT,
@@ -19,8 +19,7 @@ CREATE TABLE Patient (
     email VARCHAR(255) NOT NULL,
     phoneNumber VARCHAR(30) DEFAULT NULL,
     socialNumber VARCHAR(100) DEFAULT NULL,
-    healthInsurance boolean DEFAULT NULL,
-    inQueue boolean DEFAULT FALSE,
+    healthInsurance BOOLEAN DEFAULT NULL,
     bloodPressure INT DEFAULT NULL,
     heartRate INT DEFAULT NULL,
     bodyTemperature INT DEFAULT NULL,
@@ -33,13 +32,12 @@ CREATE TABLE Patient (
     PRIMARY KEY (id),
     UNIQUE KEY uk_patient_email (email),
 
-    CONSTRAINT fk_patient_person
+    CONSTRAINT fk_patient_nurse
         FOREIGN KEY (nurse_id)
         REFERENCES Person(id)
         ON DELETE RESTRICT
         ON UPDATE CASCADE
-
-)
+);
 
 CREATE TABLE Consultation (
     id INT NOT NULL AUTO_INCREMENT,
@@ -51,44 +49,49 @@ CREATE TABLE Consultation (
     status ENUM('OPEN', 'PENDING', 'COMPLETED') NOT NULL,
 
     practitioner_id INT NOT NULL,
+    patient_id INT NOT NULL,
 
     PRIMARY KEY (id),
 
-    CONSTRAINT fk_consultation_person
+    CONSTRAINT fk_consultation_practitioner
         FOREIGN KEY (practitioner_id)
         REFERENCES Person(id)
         ON DELETE RESTRICT
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
 
-)
+    CONSTRAINT fk_consultation_patient
+        FOREIGN KEY (patient_id)
+        REFERENCES Patient(id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
 
 CREATE TABLE ExpertiseRequest (
     id INT NOT NULL AUTO_INCREMENT,
 
     question TEXT NOT NULL,
 
-    priority ENUM(
-        'URGENT',
-        'NORMAL',
-        'NON_URGENT'
-    ) NOT NULL,
+    priority ENUM('URGENT', 'NORMAL', 'NON_URGENT') NOT NULL,
 
-    status ENUM(
-        'PENDING',
-        'COMPLETED'
-    ) NOT NULL,
+    status ENUM('PENDING', 'COMPLETED') NOT NULL,
 
     specialist_id INT NOT NULL,
+    practitioner_id INT NOT NULL,
 
     PRIMARY KEY (id),
 
-    CONSTRAINT fk_expertise_person
+    CONSTRAINT fk_expertise_specialist
         FOREIGN KEY (specialist_id)
         REFERENCES Person(id)
         ON DELETE RESTRICT
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
 
-)
+    CONSTRAINT fk_expertise_practitioner
+        FOREIGN KEY (practitioner_id)
+        REFERENCES Person(id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
 
 CREATE TABLE MedicalHistory (
     id INT NOT NULL AUTO_INCREMENT,
@@ -108,8 +111,7 @@ CREATE TABLE MedicalHistory (
         REFERENCES Patient(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-
-) 
+);
 
 CREATE TABLE MedicalProcedure (
     id INT NOT NULL AUTO_INCREMENT,
@@ -134,5 +136,4 @@ CREATE TABLE MedicalProcedure (
         REFERENCES Consultation(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-
-)
+);
